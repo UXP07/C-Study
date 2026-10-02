@@ -1,0 +1,43 @@
+{
+  "version": 3,
+  "configurePresets": [
+    {
+      "name": "default",
+      "displayName": "MinGW Debug (Windows)",
+      "generator": "MinGW Makefiles",
+      "binaryDir": "${sourceDir}/build/obj",
+      "cacheVariables": { "CMAKE_BUILD_TYPE": "Debug" },
+      "condition": { "type": "equals", "lhs": "${hostSystemName}", "rhs": "Windows" }
+    },
+    {
+      "name": "linux",
+      "displayName": "Unix Makefiles Debug (Linux/WSL2)",
+      "generator": "Unix Makefiles",
+      "binaryDir": "${sourceDir}/build/obj-linux",
+      "cacheVariables": { "CMAKE_BUILD_TYPE": "Debug" },
+      "condition": { "type": "equals", "lhs": "${hostSystemName}", "rhs": "Linux" }
+    },
+    {
+      "name": "release",
+      "displayName": "MinGW Release (-O2, Windows)",
+      "generator": "MinGW Makefiles",
+      "binaryDir": "${sourceDir}/build/obj-release",
+      "cacheVariables": { "CMAKE_BUILD_TYPE": "Release" },
+      "condition": { "type": "equals", "lhs": "${hostSystemName}", "rhs": "Windows" }
+    },
+    {
+      "name": "linux-release",
+      "displayName": "Unix Makefiles Release (-O2, Linux/WSL2)",
+      "generator": "Unix Makefiles",
+      "binaryDir": "${sourceDir}/build/obj-release-linux",
+      "cacheVariables": { "CMAKE_BUILD_TYPE": "Release" },
+      "condition": { "type": "equals", "lhs": "${hostSystemName}", "rhs": "Linux" }
+    }
+  ],
+  "buildPresets": [
+    { "name": "default", "configurePreset": "default" },
+    { "name": "linux", "configurePreset": "linux" },
+    { "name": "release", "configurePreset": "release" },
+    { "name": "linux-release", "configurePreset": "linux-release" }
+  ]
+}
